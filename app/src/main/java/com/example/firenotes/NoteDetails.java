@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class NoteDetails extends AppCompatActivity {
+    Intent data;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -28,7 +29,7 @@ public class NoteDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent data = getIntent();
+      data = getIntent();
 
         TextView content = findViewById(R.id.noteDetailsContent);
         TextView title = findViewById(R.id.noteDetailsTitle);
@@ -42,8 +43,11 @@ public class NoteDetails extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(view.getContext(),EditNote.class);
+                i.putExtra("title",data.getStringExtra("title"));
+                i.putExtra("content",data.getStringExtra("content"));
+                i.putExtra("noteId",data.getStringExtra("noteId"));
+                startActivity(i);
             }
         });
     }

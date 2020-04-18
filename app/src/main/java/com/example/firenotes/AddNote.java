@@ -51,7 +51,7 @@ public class AddNote extends AppCompatActivity {
                 String ncontent = noteContent.getText().toString();
 
                 if (ntitle.isEmpty() || ncontent.isEmpty()){
-                    Toast.makeText(AddNote.this, "can not save note with empty fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNote.this, "Can not save note with empty fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -60,13 +60,13 @@ public class AddNote extends AppCompatActivity {
 
                 DocumentReference docref = fstore.collection("notes").document();
                 Map<String,Object> note = new HashMap<>();
-                note.put("Title",ntitle);
+                note.put("title",ntitle);
                 note.put("content",ncontent);
 
                 docref.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(AddNote.this, "note added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNote.this, "Note added", Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -91,7 +91,7 @@ public class AddNote extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.close){
-            Toast.makeText(AddNote.this, "Not saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddNote.this, "Note Cancelled", Toast.LENGTH_SHORT).show();
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
